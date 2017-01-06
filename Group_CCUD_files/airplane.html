@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC >
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="./lib/leaflet-1.0.0/leaflet.css">
+    <link rel="stylesheet" href="./css/fgw.css">
+    <script src="./lib/leaflet-1.0.0/leaflet.js"></script>
+    <script src="./lib/leaflet-1.0.0/esri-leaflet.js"></script>
+    <script src="./lib/leaflet-canvas/leaflet.canvas.js"></script>
+    <script src="./lib/leaflet-canvas/leaflet.canvas.flows_new.js"></script>
+    <script type="text/javascript" src="./js/airports.js"></script>
+    <script type="text/javascript" src="./js/start.js"></script>
+    <script type="text/javascript" src="./js/end.js"></script>
+    <script type="text/javascript" src="./js/airnode.js"></script>
+</head>
+<body>
+<div id="map" class="leaflet-container leaflet-fade-anim leaflet-grab" tabindex="0" style="position: relative;">
+    <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
+        <div class="leaflet-pane leaflet-tile-pane">
+            <div class="leaflet-layer" style="z-index: 1; opacity: 1;">
+                <div class="leaflet-tile-container leaflet-zoom-animated"
+                     style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" src="./12"
+                                                                                               class="leaflet-tile leaflet-tile-loaded"
+                                                                                               style="width: 256px; height: 256px; transform: translate3d(-186px, -97px, 0px); opacity: 1;">
+                </div>
+            </div>
+        </div>
+        <div class="leaflet-pane leaflet-shadow-pane"></div>
+        <div class="leaflet-pane leaflet-overlay-pane">
+            <canvas class="leaflet-zoom-animated" width="0" height="0"
+                    style="position: absolute; transform: translate3d(0px, 0px, 0px);"></canvas>
+        </div>
+        <div class="leaflet-pane leaflet-marker-pane"></div>
+        <div class="leaflet-pane leaflet-popup-pane"></div>
+        <div class="leaflet-proxy leaflet-zoom-animated"
+             style="transform: translate3d(3257.5px, 1632.5px, 0px) scale(8);"></div>
+    </div>
+    <div class="leaflet-control-container">
+        <div class="leaflet-top leaflet-left"></div>
+        <div class="leaflet-top leaflet-right"></div>
+        <div class="leaflet-bottom leaflet-left"></div>
+        <div class="leaflet-bottom leaflet-right"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    var map = L.map("map", {
+        attributionControl: false,
+        zoomControl: false,
+        minZoom: 0,
+        maxZoom: 15,
+        scrollWheelZoom: false
+    }).setView(new L.LatLng(34.27083595165, 106.30371093750001), 4);
+    var basemap = L.esri.tiledMapLayer("http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer");
+    basemap.addTo(map);
+    map.on("click", function (e) {
+
+    });
+
+    //function init(){
+    var colors = [
+        //[80, 193, 235],
+        //[158, 61, 144],
+        //[215, 71, 146],
+        [255, 0, 0],
+        //[232, 122, 15],
+        //[237, 166, 13],
+        //[255, 255, 0],
+        //[95, 182, 60],
+        //[178, 213, 135],
+        //[255, 255, 255]
+    ];
+    //var f = [[18.1658935546875,41.68522004222073],[19.30572509765625,42.071723466810774],[19.30572509765625,41.31288691435732]];
+    //var t = [[[19.30572509765625,42.071723466810774]],[[20.555419921875,42.553080288955826],[19.29572509765625,41.31288691435732]],[[20.555419921875,41.03171529379288],[20.555419921875,41.399475357337565],[20.555419921875,41.73033005046653],[20.555419921875,42.120635949743644],[20.555419921875,40.77638178482896]]];
+    var f = [];
+    var t = [];
+    //for(var i=0;i<2;i++){
+    //f.push([airports[starts[i]].latlng[1],airports[starts[i]].latlng[0]]);
+
+    //}
+    for (var x in airplane) {
+        f.push([airplane[x].latlng[1], airplane[x].latlng[0]]);
+        var a = [];
+        for (var i = 0; i < airplane[x].arr.length; i++) {
+            var o = airplane[x].arr[i];
+            for (var y in o) {
+                a.push([o[y].latlng[1], o[y].latlng[0]]);
+            }
+        }
+        t.push(a);
+    }
+
+    //f.push([110.058192,25.221343]);
+    //f.push([103.624737,36.509787]);
+
+    //for(var i=1;i<150;i++){
+
+    //a.push([airports[ends[i]].latlng[1]+Math.round(Math.random()*9+1),airports[ends[i]].latlng[0]+Math.round(Math.random()*9+1)]);
+
+    //}
+    //t.push(a);
+    //a = [];
+    //for(var i=1;i<150;i++){
+
+    //a.push([airports[ends[i]].latlng[1]-Math.round(Math.random()*9+1),airports[ends[i]].latlng[0]-Math.round(Math.random()*9+1)]);
+
+    //}
+    //t.push(a);
+    debugger;
+    //var geos = l1;
+    var flowdata = {
+        from: f,
+        to: t,
+        colors: colors,
+        //geo: geos
+    };
+    var flow = new L.CanvasLayer.flows().addTo(map);
+    flow.options.flag = "l1";
+    flow.on('flowend', function (e) {
+        //move.setData(e.data);
+        //circle.setData(e.data);
+    });
+    flow.setData(flowdata);
+    //}
+</script>
+
+</body>
+</html>

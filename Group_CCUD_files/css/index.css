@@ -1,0 +1,172 @@
+@CHARSET "UTF-8";
+
+body,html{
+	width: 100%;
+	margin: 0px;
+	height:100%;
+	padding: 0px;
+	font-family: "Microsoft YaHei" ! important; 
+}
+
+.title{
+	width: 100%;
+	height: 72px;
+	padding: 0px;
+	margin: 0px;
+	line-height: 72px;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 201;
+}
+
+.xiala{
+	float: left;
+	width: 200px;
+	height: 100%;
+	text-align: center;
+	font-size: 22px;
+	color: #fff;
+	background-color: #36b5b5;
+}
+
+.logo{
+	float:right;
+	width: 200px;
+	height: 100%;
+	background-color: red;
+}
+
+.titlename{
+	float:left;
+	width: calc(100% - 400px);
+	height: 100%;
+	text-align: center;
+	color: #36b5b5;
+	font-size: 36px;
+	background-color: #fff;
+}
+
+.cities{
+	position: fixed;
+	top: 72px;
+	left: 0px;
+	background-color: #333d47;
+	color: #fff;
+	width: 200px;
+	text-align: center;
+	line-height: 35px;
+	font-size: 16px;
+	height: 0px;
+	display: none;
+	z-index: 201;
+}
+
+.indexes{
+	position: absolute;
+	top: 72px;
+	left: 0px;
+	background-color: #333d47;
+	color: #fff;
+	width: 200px;
+	text-align: center;
+	line-height: 35px;
+	font-size: 16px;
+	height: 0px;
+	display: none;
+	z-index: 201;
+}
+
+.citiesli{
+	cursor: pointer;
+}
+
+.citiesli:HOVER{
+	font-size: 18px;
+	line-height: 39px;
+}
+
+#map{
+	width: 100%;
+	height: calc( 100% );
+	background-image: url("../img/bg.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#menu{
+	position: fixed;
+	top:72px;
+	left: 0px;
+	width: 100%;
+	background-image: url("../img/shandow.png");
+	background-repeat: repeat-x;
+	z-index: 201;
+}
+
+.menuli{
+	width: calc(15% - 20px);
+	background-color: #36b5b5;
+	text-align: center;
+	float: left;
+	height: 50px;
+	line-height:50px;
+	color: #fff;
+	font-size: 20px;
+	margin-left:10px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.menuli_select{
+	width: calc(15% - 20px);
+	background-color: #333d47;
+	text-align: center;
+	float: left;
+	height: 50px;
+	line-height:50px;
+	color: #fff;
+	font-size: 20px;
+	margin-left:10px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.popdiv{
+	width: 400px;
+}
+
+.arrow{
+	width: 20px;
+	height: 20px;
+	background-image: url("../img/arrow.png"); 
+	cursor: pointer;
+	float: left;
+	margin-top: 26px;
+}
+
+.arrow:HOVER {
+	background-image: url("../img/arrow_down.png"); 
+}
+
+.bgdiv{
+	background-image: url("../img/bg.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: calc(100%);
+}
+
+.cdiv{
+	display: none;
+	text-align: center;
+}
+
+.inithide{
+	width: 100%;
+	height: 400px;
+	background-color: #f5f5f5;
+	padding-top: 20px;
+	display: none;
+}
